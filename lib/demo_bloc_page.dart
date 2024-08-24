@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_16032024/counter.dart';
 import 'package:flutter_bloc_16032024/counter_bloc.dart';
+import 'package:flutter_bloc_16032024/counter_event.dart';
 
 class DemoBlocPage extends StatefulWidget {
   const DemoBlocPage({super.key});
@@ -18,11 +19,9 @@ class _DemoBlocPageState extends State<DemoBlocPage> {
         title: Text("Demo bloc page"),
       ),
       body: Container(
-        child: BlocBuilder<CounterBloc, Counter>(
-            bloc: CounterBloc(),
-            builder: (context, state) {
-              return CounterWidget(state);
-            },
+        child: BlocProvider(
+          create: (context) => CounterBloc(),
+          child: CounterWidget()
         )
       ),
     );
@@ -30,27 +29,45 @@ class _DemoBlocPageState extends State<DemoBlocPage> {
 }
 
 
-class CounterWidget extends StatelessWidget {
-  Counter counter;
+class CounterWidget extends StatefulWidget {
 
-  CounterWidget(this.counter);
+  @override
+  State<CounterWidget> createState() => _CounterWidgetState();
+}
+
+class _CounterWidgetState extends State<CounterWidget> {
+
+  late CounterBloc bloc;
+
+  @override
+  void initState() {
+    super.initState();
+    bloc = BlocProvider.of(context);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text("Count: ${counter.value}", style: TextStyle(fontSize: 20)),
-        SizedBox(height: 10),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+    return BlocBuilder<CounterBloc, Counter>(
+      bloc: CounterBloc(),
+      builder: (context, state) {
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(onPressed: () {}, child: Text("+")),
-            ElevatedButton(onPressed: () {}, child: Text("-")),
-            ElevatedButton(onPressed: () {}, child: Text("Reset"))
+            Text("Count: ${state.value}", style: TextStyle(fontSize: 20)),
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                ElevatedButton(onPressed: () {
+                  bloc.add(Increase(count: 1));
+                }, child: Text("+")),
+                ElevatedButton(onPressed: () {}, child: Text("-")),
+                ElevatedButton(onPressed: () {}, child: Text("Reset"))
+              ],
+            )
           ],
-        )
-      ],
+        );
+      },
     );
   }
 }
