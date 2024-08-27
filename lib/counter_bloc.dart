@@ -6,8 +6,8 @@ import 'package:flutter_bloc_16032024/counter_event.dart';
 class CounterBloc extends Bloc<CounterEventBase, Counter> {
   CounterBloc() : super(Counter(0)) {
     on<Increase>((event, emit){
-      state.value += event.count;
-      emit(state);
+      var value = event.count + state.value;
+      emit(Counter(value));
     });
   }
 }

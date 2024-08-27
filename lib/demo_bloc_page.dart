@@ -47,27 +47,27 @@ class _CounterWidgetState extends State<CounterWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CounterBloc, Counter>(
-      bloc: CounterBloc(),
-      builder: (context, state) {
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Count: ${state.value}", style: TextStyle(fontSize: 20)),
-            SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ElevatedButton(onPressed: () {
-                  bloc.add(Increase(count: 1));
-                }, child: Text("+")),
-                ElevatedButton(onPressed: () {}, child: Text("-")),
-                ElevatedButton(onPressed: () {}, child: Text("Reset"))
-              ],
-            )
-          ],
-        );
-      },
+    return BlocConsumer<CounterBloc, Counter>(
+        listener: (_, __) => _,
+        builder: (context, counter) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("Count: ${counter.value}", style: TextStyle(fontSize: 20)),
+              SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ElevatedButton(onPressed: () {
+                    bloc.add(Increase(count: 1));
+                  }, child: Text("+")),
+                  ElevatedButton(onPressed: () {}, child: Text("-")),
+                  ElevatedButton(onPressed: () {}, child: Text("Reset"))
+                ],
+              )
+            ],
+          );
+        },
     );
   }
 }
