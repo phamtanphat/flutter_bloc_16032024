@@ -12,9 +12,19 @@ class _DemoStructureBlocPageState extends State<DemoStructureBlocPage> {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: Text("Demo bloc page"),
+        title: Text("Demo structure bloc page"),
       ),
       body: Container()
     );
+  }
+}
+
+
+class StructureBlocWidget extends StatelessWidget {
+  const StructureBlocWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }
