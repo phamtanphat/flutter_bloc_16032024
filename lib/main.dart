@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc_16032024/demo_bloc_page.dart';
+import 'demo_lib_bloc/demo_bloc_page.dart';
+import 'demo_structure_bloc/demo_structure_bloc_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: DemoBlocPage()
+      home: DemoStructureBlocPage()
     );
   }
 }

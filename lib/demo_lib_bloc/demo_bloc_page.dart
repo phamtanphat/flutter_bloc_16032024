@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_16032024/counter.dart';
-import 'package:flutter_bloc_16032024/counter_bloc.dart';
-import 'package:flutter_bloc_16032024/counter_event.dart';
+import 'package:flutter_bloc_16032024/demo_lib_bloc/counter.dart';
+import 'package:flutter_bloc_16032024/demo_lib_bloc/counter_bloc.dart';
+
+import 'counter_event.dart';
 
 class DemoBlocPage extends StatefulWidget {
   const DemoBlocPage({super.key});
