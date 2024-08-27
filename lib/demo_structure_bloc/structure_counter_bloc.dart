@@ -5,9 +5,9 @@ import '../demo_structure_bloc/structure_counter_event.dart';
 
 class StructureCounterBloc {
   StreamController<StructureCounterIncrease> eventController = StreamController();
-  StreamController<Counter> counterController = StreamController();
+  StreamController<Counter> counterController = StreamController()..sink.add(Counter(100));
 
   StructureCounterBloc() {
-    
+
   }
 }
