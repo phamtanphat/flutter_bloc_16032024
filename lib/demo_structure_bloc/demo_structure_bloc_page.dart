@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_16032024/demo_structure_bloc/structure_counter_bloc.dart';
+import 'package:flutter_bloc_16032024/demo_structure_bloc/structure_counter_event.dart';
 import 'package:provider/provider.dart';
 
 class DemoStructureBlocPage extends StatefulWidget {
@@ -51,7 +52,9 @@ class _StructureBlocWidgetState extends State<StructureBlocWidget> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                ElevatedButton(onPressed: () {}, child: Text("+")),
+                ElevatedButton(onPressed: () {
+                  bloc?.eventController.sink.add(StructureCounterIncrease(value: 1));
+                }, child: Text("+")),
                 ElevatedButton(onPressed: () {}, child: Text("-")),
                 ElevatedButton(onPressed: () {}, child: Text("Reset"))
               ],
